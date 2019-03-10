@@ -4,11 +4,11 @@
 
 * [Chapter 1 - Advanced Class Design](#Advanced-Class-Design)
     * [Reviewing OCA Concepts](#Reviewing-OCA-Concepts)
-        * [Access Modifiers](###Access-Modifiers)
-        * [Overloading and Overriding](###Overloading-and-Overriding)
-        * [Abstract Classes](###Abstract-Classes)
-        * [Static vs Final](###Static-vs-Final)
-        * [Import](###Import)
+        * [Access Modifiers](#Access-Modifiers)
+        * [Overloading and Overriding](#Overloading-and-Overriding)
+        * [Abstract Classes](#Abstract-Classes)
+        * [Static vs Final](#Static-vs-Final)
+        * [Import](#Import)
 
 # Advanced-Class-Design
 
