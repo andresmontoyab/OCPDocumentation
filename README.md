@@ -8,7 +8,7 @@
         * [Overloading and Overriding](#Overloading-and-Overriding)
         * [Abstract Classes](#Abstract-Classes)
         * [Static vs Final](#Static-vs-Final)
-        * [Import](#Import)
+        * [Instance of ](#Instance-of)
 
 # Advanced-Class-Design
 
@@ -62,7 +62,33 @@ Overrinding occurs only when the method signature is the same(name and parameter
 
 2. Final prevent a variable from changing or a method for being overriden. Using final in a class means that it can not be subclassed.
 
-###
+### Instance of 
+
+In " a instanceof b" return true if the reference in which points "a" is an instance of class B, a subclass of B or a class that implements the B interface.
+
+        class HeavyAnimal{}
+        class Hippo extends HeavyAnimal{}
+        class Elephant extends HeavyAnimal{}
+
+        HeavyAnimal hippo = new Hippo();
+        boolean b1 = hippo instanceof Hippo;        // true
+        boolean b1 = hippo instanceof HeavyAnimal;  // true
+        boolean b1 = hippo instanceof Elepahnt;     // false
+
+All java classes inherit from Objec, which means that "x instanceof Object" is usually true, except for one case where it is false. If the literal null or a variable reference pointing to null is used to check instanceof, the result is false.
+
+There is another scenario.
+
+        Hippo hippo = new Hippo();
+        boolean b1 = hippo instanceof Hippo;        // true
+        boolean b1 = hippo instanceof HeavyAnimal;  // DOES NOT COMPILE
+
+There's no posible way that for a hippo variable reference to be an Elephant , since hippo doesn't extends Elephant.
+
+The compilation check only applies if instanceof is called on a class. When checking whether an object is in an instanceof of an interface , java wait until runtime to do the check. the reason is that a subclass could implement that interface and the compiler wouldnt know it.
+
+
+
 
 
 
