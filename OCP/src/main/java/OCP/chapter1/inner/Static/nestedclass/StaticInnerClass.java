@@ -1,12 +1,19 @@
 package OCP.chapter1.inner.Static.nestedclass;
 
 public class StaticInnerClass {
-    static class Nested {
-        private int a = 6;
+
+    public int suma(Integer a) {
+        System.out.println("Integer");
+        return a + 3;
+    }
+
+    public long suma(long a) {
+        System.out.println("long");
+        return a + new Long(3);
     }
 
     public static void main(String[] args) {
-        Nested nested = new Nested();
-        System.out.println(nested.a);
+        StaticInnerClass staticInnerClass = new StaticInnerClass();
+        System.out.println(staticInnerClass.suma(2));
     }
 }
