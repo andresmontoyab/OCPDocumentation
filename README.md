@@ -14,6 +14,8 @@
         * [HasCode](#HasCode)
         * [Working with Enums](#Working-with-enums)
         * [Creating Nested Classes](#Creating-Nested-Classes)
+* [Chapter 2 - Design Pattern and Principles](#Design-Pattern-and-Principles)
+    * [Designing an Interface](#Designing-an-Interface)
 
 # Advanced-Class-Design
 
@@ -440,7 +442,11 @@ If you want to implement both an interface and also a class  and extend a class,
         }
         }
 
-As we can see because this is a static nested class we dont need to use the enclosing class to create a instnace of the inner class.        
+As we can see because this is a static nested class we dont need to use the enclosing class to create a instnace of the inner class.     
+
+# Design Pattern and Principles
+
+## Designing-an-Interface
 
 
 
