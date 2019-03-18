@@ -448,7 +448,83 @@ As we can see because this is a static nested class we dont need to use the encl
 
 ## Designing-an-Interface
 
+* As you may recall, an interface is an abstract data type, similar to a class that defines a list of public abstract methods that any class implementing the interface must provide. An interface may also include constant public static final variables, default methods and static methods.
 
+
+```
+interface Fly {
+    public int getWingSpan() throws Exception;
+    public static final int MAX_SPEED = 100;
+    
+    public default void land() {
+        System.out.println("Animal is landing");
+    }
+    
+    public static double calculateSpeed(float distance, double time) {
+        return distance/time;
+    }
+}
+
+class Eagle implements Fly {
+    public int getWingSpan() throws Exception {
+        return 0;
+    }
+
+    public void land() {
+
+    }
+}
+```
+
+* An Interface can extend another interfaces, and in doing so it inherits all of the abstract methods.
+
+```
+interface Walk {
+    boolean isQuadruped();
+    abstract double getMaxSpeed();
+}
+
+interface Run extends Walk {
+    public abstract boolean canHuntWhileRunning();
+    abstract double getMaxSpeed();
+}
+
+class Lion implements Run {
+    public boolean isQuadruped() {
+        return false;
+    }
+
+    public boolean canHuntWhileRunning() {
+        return false;
+    }
+
+    public double getMaxSpeed() {
+        return 0;
+    }
+}
+```
+
+* The compiler automatically adds public to all interfaces methods and abstract to all non-static and non-default methods, if the developer does not provide them.
+
+* Remember that an interface can not extend a class, nor can a class extend an interface.
+
+```
+public interface Sleep extends Lion {}          // Does not compile
+
+public class Tiger extends Walk {}              // Does not compile
+
+```
+
+* Interface also serve to provide limited support for multiple inheritance within the java language, as a class may implement multiple interface.
+
+```
+public interface Swin {}
+
+public interface Hop {}
+
+public class Frog implements Swin, Hop {}
+
+```
 
 
 
