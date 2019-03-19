@@ -16,6 +16,10 @@
         * [Creating Nested Classes](#Creating-Nested-Classes)
 * [Chapter 2 - Design Pattern and Principles](#Design-Pattern-and-Principles)
     * [Designing an Interface](#Designing-an-Interface)
+    * [Introducing Functional Programming](#Introducing-Functional-Programming)
+    * [Understaing Lambda Syntax.](#-Understaing-Lambda-Syntax.)
+    
+    
 
 # Advanced-Class-Design
 
@@ -526,13 +530,86 @@ public class Frog implements Swin, Hop {}
 
 ```
 
+* <mark> Java will failing to compile if a class or interface inherits two defaults methods with the same signature and does not provide its own implementation <mark>.
+
+* And interface provide a way for one individual to develop code that uses another individual's code, without having access to the other individual's underlying implementation, Interfaces can facilitate rapid application development by enabling development teams to create application in parallel, rather than being directly dependent on each other.
 
 
+## Introducing Functional Programming
 
+* Java defines a functional interface as an interface that contains a single abstract method. Functional interfaces are used as the basi for lambda expression in funcional programming. A lambda expression is a block of code that get passed around, like an anonymous method.
 
+```
+@FunctionalInterface
+public interface FunctionalInterfaces {
+    public void sprint(Object animal);
+}
 
+class Tiger implements FunctionalInterfaces {
+    public void sprint(Object animal) {
+        System.out.println("Animal is sprinting fast");
+    }
+}
+```
 
+* While it is a good practice to mark a functional interface with the @FunctionalInterface annotation for clarity, it is not required with functional programming. The java compiler implicity assumess that any interface that contains exactly one abstract method is a functional interface. Conversely, if a class marked with the @FunctionalInterface annotation contains more than one abstract method, or no abstract method al all, then the compiler will detect this error and not compile.
 
+* One problem with no marking your functional interface with this annotaion is that another developer may treat any interface that you create like a simple interface.
+
+## Understaing Lambda Syntax.
+
+* The syntax of lambda is tricky because many parts are optional. These two lines are equivalent and do the exact same thing:
+
+```
+
+a -> a.canHop()
+
+(Animal a) -> {return a.canHop();}
+
+```
+
+* The left side of the arrow operator "->" indicates the input parameters for the lambda expression. It can be consummed by a functional interfaces whose abstract methods has the same number of parameters and compatible data types. The right side is referred to as the body of the lambda expression. It can be consumed by a functional interface whose abstract method returns a compatible data type.
+
+```
+(Animal a) -> { return a.canHop();}
+
+```
+
+1. Optional parameter type.
+2. Parameter name
+3. arrow.
+4. return and ";" are required if we used the {}
+5. body.
+
+* The parentheses () can be omitted in a lambda expression if there is exactly one input parameter and the type is not explicty staetd in the expression. This means that expressions that have zero or more than one input parameters will still require parentheses.
+
+### Invalid Lambdas
+
+```
+Duck d -> d.quack()
+a,d -> d.quack()
+Animal a, Duck d -> d.quack()
+
+```
+
+* What is tricky here is that when you add braces {}. you must explicity terminate each statement in the body with semicolons ";".
+* We were able to omit {}, ";" and return statement because this is a special shortcut that java allows for single-line lambda bodies.
+
+* When using {} in the body of the lambda expression, you must use the return statement if the functional interface method that lambda implements returns a value. Alternatively a return statement is optional when the return type of the method is a void.
+
+* Therenos rule that says the lambda expression must use all of the input parameters.
+
+```
+(a,b) -> a.startsWith("test")
+
+```
+
+* We've been defining an argument list in out lambda expressions. Since java does not allow us to re-declare a local variable. the following is a issue.
+
+```
+(a,b) -> { int a = 0; return 5}          // DOES NOT COMPILE.
+
+```
 
 
 
