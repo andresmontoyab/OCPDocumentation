@@ -17,7 +17,12 @@
 * [Chapter 2 - Design Pattern and Principles](#Design-Pattern-and-Principles)
     * [Designing an Interface](#Designing-an-Interface)
     * [Introducing Functional Programming](#Introducing-Functional-Programming)
-    * [Understaing Lambda Syntax.](#-Understaing-Lambda-Syntax.)
+    * [Understaing Lambda Syntax.](#Understaing-Lambda-Syntax.)
+    * [Implementing Polymirphism.](#Implementing-Polymirphism.)
+        * [Object vs Reference..](#Object-vs-Reference..)
+        * [Casting Object References .](#Casting-Object-References ..)
+    
+    
     
     
 
@@ -611,7 +616,86 @@ Animal a, Duck d -> d.quack()
 
 ```
 
+## Implementing-Polymirphism
 
+* Polymorphism is the ability of a single interface to su´pport multiple forms. In java, this allows multiples types of objects to e passed to a single method or class.
 
+```
+interface LivesInOcean {
+    void makeSound();
+}
+
+class Dolphin implements LivesInOcean {
+    public void makeSound() {
+        System.out.println("whistle");
+    }
+}
+
+class Whale implements LivesInOcean {
+    public void makeSound() {
+        System.out.println("Sing");
+    }
+}
+
+class Oceanographer {
+
+    public void checkSound(LivesInOcean livesInOcean){
+        livesInOcean.makeSound();
+    }
+    public static void main(String[] args) {
+        Oceanographer oceanographer = new Oceanographer();
+        oceanographer.checkSound(new Dolphin());
+        oceanographer.checkSound(new Whale());
+    }
+}
+```
+
+* A Java object may be accessed using a reference with the same type as the object, reference that is a superclass of the object. or a references that defines an interface that the object implements, either directly or through a super class. Furthermore a cast is not required if the object is being reassigned to a supertype or interface of the object.
+
+* THIS IS VERY IMPORTANT -> If you use a variable to refer to an object, then only the methods or variables that are part of the variable's references type can be called without an explicity cast.
+
+### Object vs Reference.
+
+* Conceptually, though, you should consider the object as the entity that exists in memory, allocated by the Java runtime environment. Regardless of the type of the reference that the type of the reference that you have fo the object in memory, the object itself does not change.
+
+1. The type of the object determine which properties exist within the object in memory.
+2. The type of the reference to the object determines which methods and variables are accesible to the java program.
+
+### Casting Object References 
+
+* Here are the basic rules to keep in mind when casting variables:
+
+1. Casting an object from a subclass to a superclass does not require an explicit cast.
+2. Casting an object from a superclass to a subclass requires an explicit cast.
+3. The compiler will not allow cast to unrelated types.
+
+```
+
+public class Bird {}
+
+public class Fish {
+        public static void main(String[] args) {
+                Fish fish = new Fish();
+                Bird bird = (Bird) fish; // DOES NOT COMPILE.
+        }
+}
+
+```
+
+4. Even when the code compiles without issue, an exception may be thrown at runtime if the object being cast is not actually an instance of that class.
+
+```
+public class Rodent {}
+
+public class Capybara extends Rodent {
+        public static void main(String[] args) {
+                Rodent rodent = new Rodent();
+                Capybara capyvara = (Capybara) rodent;          // ClassCastException.
+        }
+}
+
+```
+
+## Understanding Design Principles.
 
 

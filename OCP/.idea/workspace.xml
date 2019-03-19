@@ -176,10 +176,10 @@
     <option name="jreName" value="1.8" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-11" />
-    <option name="y" value="-11" />
-    <option name="width" value="1943" />
-    <option name="height" value="1043" />
+    <option name="x" value="1814" />
+    <option name="y" value="130" />
+    <option name="width" value="854" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -271,20 +271,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.StaticInnerClass">
+  <component name="RunManager" selected="Application.Oceanographer">
     <configuration name="Enums" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="OCP.chapter1.Enums" />
-      <module name="OCP" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="OCP.chapter1.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
-    <configuration name="Equals" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="OCP.chapter1.Equals" />
       <module name="OCP" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
@@ -301,6 +290,17 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="OCP.chapter1.inner.local.classes.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="Oceanographer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="OCP.chapter2.polymorphsim.Oceanographer" />
+      <module name="OCP" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="OCP.chapter2.polymorphsim.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -369,19 +369,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="Application.Equals" />
       <item itemvalue="Application.Enums" />
       <item itemvalue="Application.OuterTwo" />
       <item itemvalue="Application.InnerLocalClass" />
       <item itemvalue="Application.StaticInnerClass" />
+      <item itemvalue="Application.Oceanographer" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Oceanographer" />
         <item itemvalue="Application.StaticInnerClass" />
         <item itemvalue="Application.InnerLocalClass" />
         <item itemvalue="Application.OuterTwo" />
         <item itemvalue="Application.Enums" />
-        <item itemvalue="Application.Equals" />
       </list>
     </recent_temporary>
   </component>
