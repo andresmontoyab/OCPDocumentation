@@ -19,9 +19,13 @@
     * [Introducing Functional Programming](#Introducing-Functional-Programming)
     * [Understaing Lambda Syntax.](#Understaing-Lambda-Syntax.)
     * [Implementing Polymirphism.](#Implementing-Polymirphism.)
-        * [Object vs Reference..](#Object-vs-Reference..)
-        * [Casting Object References .](#Casting-Object-References ..)
-    
+        * [Object vs Reference.](#Object-vs-Reference.)
+        * [Casting Object References.](#Casting-Object-References.)
+    * [Understanding Design Principles.](#Understanding-Design-Principles.)
+        * [The Is-a Relationship.](#The-Is-a-Relationship.)
+        * [The has-a Relationship.](#The-Has-a-Relationship.)
+    * [Design Patterns](#Design-Patterns)
+        * [Singleton Pattern.](#Singleton-Pattern.)
     
     
     
@@ -697,5 +701,47 @@ public class Capybara extends Rodent {
 ```
 
 ## Understanding Design Principles.
+
+* A design principle is an established idea or best practice that facilitates the software design process.
+
+* In general, following good desing principles leads to:
+
+1. More logical code.
+2. Code that is easier to understand.
+3. Classes that are easier to reuse in other relationships and appications.
+4. Code that are easier to maintain and that adapst more readity to changes in the application requirements.
+
+### The Is-a Relationship.
+
+* In Object Oriented design, we describe the property of an object being an instance of a data type as having an is-a relationship. the is-a relationship is also known as the inheritance test.
+
+* The fundamental result of the is-a principle is that if A is-a B, the any instance of A can be treated like an instance of B. this hold true for a child that is subclass of any parent, be it direct subclass or a distant child.
+
+* When constructing an inheritance-based data model, it is important to apply the is-a relationship regurlarly, so that you are deisgning classes that conceptually make sense.
+
+
+### The Has-a Relationship.
+
+* We refer to has-a relationship as the property of an object having a named data object or primitive as a member. The has-a relationship is also known as the object composition test.
+
+* If a parent has-a object as a protected or public member, then any child of the parent must also have that object as a member.
+
+* Object composition should be thought of as an alternate to inheritance and is often used to simulate polymorphic behavior that can not be achieved via single ingeritance.
+
+## Design Patterns.
+
+* A design pattern is an established general solution to a commonly ocurring software development problem.
+
+* Creational patterns simply apply a level of indirection to object creation by creating the object in some other class, rather than creating the object directly in your application. Level of indirection is a general term for solving a software design problem by conceptually separing the task into multiples level.
+
+### Singleton Pattern.
+
+* Problem -> How do we create an object in memory only once in an application and have it shared by multiples classes?
+
+* 
+
+
+
+
 
 
