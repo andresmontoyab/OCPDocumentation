@@ -26,7 +26,9 @@
         * [The has-a Relationship.](#The-Has-a-Relationship.)
     * [Design Patterns](#Design-Patterns)
         * [Singleton Pattern.](#Singleton-Pattern.)
-    
+        * [Inmutable Objects.](#Inmutable-Objects.)
+        * [Builder Pattern.](#Builder-Pattern.)
+        * [Factory Pattern](#Factory-Pattern)
     
     
 
@@ -738,10 +740,176 @@ public class Capybara extends Rodent {
 
 * Problem -> How do we create an object in memory only once in an application and have it shared by multiples classes?
 
-* 
+* Solution -> The singletoon pattern is a creational pattern focused on creating only one instance of an object in memory within an application, shareable by all classes and threads within the application. The globally available object created by the singletoon parent is referred to as an singletoon.
 
+```
+class HayStorage {
+    private int quantiyt;
+    private HayStorage() {
+        
+    }
+    
+    private static final HayStorage instance = new HayStorage();
+    
+    public static HayStorage getInstance() {
+        return instance;
+    }
+    
+    public synchronized void addHay(int amount) {
+        quantiyt += amount;
+    }
+}
+```
 
+* Singletoon in java are created as private static variables within the class, often with the name instance. They are accessed via a single singleton Object. Finally all constructor in a singletoon class are marked as private, which ensures that no other class is capable of instantiate another version of the class.
 
+* Singletoon are used in a situations where we need access to a single set of data thoughout an application.
 
+### Singletons in Server Environment.
 
+* For the purpose of the exam, singletoon are always unique. When you get to writting application that run across multiple computer would have its own JVM. In those situations, you might still use the singletoon pattern, although it might be implemented with a database or a queue that a static object.
 
+### Inmutable Objects.
+
+* Problem -> How do we create read-only objects that can be shared and used by multiple classes?
+
+* Solution -> The inmutable object pattern is a creational pattern based on the idea of creating objects whose state does not change after they are created abd can be easily shared across multiple classes.
+
+1. Use a constructor to set all properties of the object.
+2. Mark all of the instance variable private and final.
+3. Do not define any setter method.
+4. Do not allow reference mutable objects to be modified or accesed directly.
+5. Prevent methods from being overriden.
+
+* Regarding to the point 4, if for example we have a List<> and we have getList() method, the idea is never to return the reference to this list. More generally stated, you should never share references to a mutable objects contained within an inmutable object. 
+
+### Builder Pattern.
+
+* Problem -> How do we create an object that requires numerous values to be set at the time the object is instantiated.?
+
+* Solution. -> The Builder patterns is a creational pattern in which parameters are passed to a builder object, often through method chaining and an object is generated with a final build call. It is often used with inmutable objects, since inmutable objects do not have setter methods and must be created with all of their parameters set, although it can be used with mutable objects as well.
+
+```
+public class AnimalBuilder {
+
+    private String species;
+    private int age;
+    private List<String> favoriteFoods;
+
+    public AnimalBuilder setSpecies(String species) {
+        this.species = species;
+        return this;
+    }
+
+    public AnimalBuilder setAge(int age) {
+        this.age = age;
+        return this;
+    }
+
+    public AnimalBuilder setFavoriteFoods(List<String> favoriteFoods) {
+        this.favoriteFoods = favoriteFoods;
+        return this;
+    }
+    
+    public Animal build() {
+        return new Animal(this.species, this.age, this.favoriteFoods);
+    }
+
+    public static void main(String[] args) {
+        AnimalBuilder animalBuilder = new AnimalBuilder();
+        Animal cat = animalBuilder
+                .setAge(15)
+                .setSpecies("Feline")
+                .setFavoriteFoods(Arrays.asList("Bread", "etc"))
+                .build();
+                
+    }
+}
+
+class Animal {
+    private String species;
+    private int age;
+    private List<String> favoriteFoods;
+
+    public Animal(String species, int age, List<String> favoriteFoods) {
+        this.species = species;
+        this.age = age;
+        this.favoriteFoods = favoriteFoods;
+    }
+}
+```
+
+* The primary advantage of the builder pattern is that, over the time this approach leads to far more maintainable code. If a new optional field is added to the Animal class, the our code that creates object using the AnimalBuilder class will not need to be changed.
+
+### Factory Pattern
+
+* Problem -> How do we write code that creates objects in which the precise type of the object may not be known until run time.
+
+* Solution -> The factory pattern, sometimes referred to as the factory method pattern, is a creational pattern based on the idea of using a factory class to produce instnaces of objects based on a set of input parameters. It is similar to the builder pattern, although it is focused on supporting class polymorphism.
+
+```
+abstract class Food {
+    private int quantity;
+
+    public Food(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+    
+    public abstract void consumed();
+}
+
+class Hay extends Food {
+    public Hay(int quantity) {
+        super(quantity);
+    }
+
+    @Override
+    public void consumed() {
+        System.out.println("Hay eaten : " + getQuantity());
+    }
+}
+
+class Pellets extends Food {
+    public Pellets(int quantity) {
+        super(quantity);
+    }
+
+    @Override
+    public void consumed() {
+        System.out.println("Pellets eaten : " + getQuantity());
+    }
+}
+
+class Fish extends Food {
+    public Fish(int quantity) {
+        super(quantity);
+    }
+
+    @Override
+    public void consumed() {
+        System.out.println("Fish eaten : " + getQuantity());
+    }
+}
+
+class FoodFactory {
+    public static Food getFood(String animalName) {
+        switch (animalName) {
+            case "Zebra": return new Hay(100);
+            case "rabbit": return new Hay(100);
+            case "goat": return new Hay(100);
+            case "polar": return new Hay(100);
+        }
+    }
+}
+
+class ZooKeeper {
+    public static void main(String[] args) {
+        final Food food = FoodFactory.getFood("rabbit");
+        food.consumed();
+    }
+}
+```
